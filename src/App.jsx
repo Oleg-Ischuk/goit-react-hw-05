@@ -4,7 +4,6 @@ import Navigation from "./components/Navigation/Navigation";
 import Loader from "./components/Loader/Loader";
 import "./App.css";
 
-// Lazy load pages for code splitting
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
 const MovieDetailsPage = lazy(() =>
@@ -18,7 +17,7 @@ const MovieReviews = lazy(() =>
 
 function App() {
   return (
-    <div className="app">
+    <div>
       <Navigation />
       <main className="content">
         <Suspense fallback={<Loader />}>

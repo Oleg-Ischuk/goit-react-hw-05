@@ -1,6 +1,6 @@
 .header {
   background-color: var(--primary-color);
-  padding: 16px 0;
+  padding: 16px;
   box-shadow: var(--shadow);
 }
 
