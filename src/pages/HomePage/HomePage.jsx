@@ -1,42 +1,43 @@
-import { useEffect, useState } from 'react';
+"use client";
 
-import { fetchTrendMovies } from 'api/movies';
-
-import { Heading } from 'components/Heading/Heading';
-import Loader from 'components/Loader/Loader';
-import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
-import MovieList from 'components/MovieList/MovieList';
+import { useState, useEffect } from "react";
+import MovieList from "../../components/MovieList/MovieList";
+import Loader from "../../components/Loader/Loader";
+import { getTrendingMovies } from "../../services/api";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
-	const [movies, setMovies] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
-	const [isError, setIsError] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-	useEffect(() => {
-		const handleTrendMovies = async () => {
-			setIsLoading(true);
-			setIsError(false);
+  useEffect(() => {
+    const fetchTrendingMovies = async () => {
+      try {
+        setLoading(true);
+        const trendingMovies = await getTrendingMovies();
+        setMovies(trendingMovies);
+        setError(null);
+      } catch (error) {
+        setError("Failed to fetch trending movies. Please try again later.");
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-			try {
-				const { results } = await fetchTrendMovies();
-				setMovies(results);
-			} catch (error) {
-				setIsError(true);
-			} finally {
-				setIsLoading(false);
-			}
-		};
-		handleTrendMovies();
-	}, []);
+    fetchTrendingMovies();
+  }, []);
 
-	return (
-		<section className='container'>
-			<Heading title={'Trending today'} />
-			{movies.length > 0 && !isLoading && <MovieList data={movies} />}
-			{isLoading && <Loader />}
-			{isError && <ErrorMessage />}
-		</section>
-	);
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>Trending Movies Today</h1>
+
+      {error && <p className={styles.error}>{error}</p>}
+
+      {loading ? <Loader /> : <MovieList movies={movies} />}
+    </div>
+  );
 };
 
 export default HomePage;

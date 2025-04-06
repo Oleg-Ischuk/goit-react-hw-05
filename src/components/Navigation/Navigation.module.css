@@ -1,11 +1,30 @@
-.nav {
-	display: flex;
-	gap: 20px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.019);
-	box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.3);
-	padding: 10px;
+.header {
+  background-color: var(--primary-color);
+  padding: 16px 0;
+  box-shadow: var(--shadow);
 }
 
-.active {
-	color: #646cff;
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.link {
+  color: var(--white);
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.activeLink {
+  color: var(--white);
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: var(--secondary-color);
 }
