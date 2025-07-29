@@ -1,30 +1,113 @@
 .header {
-  background-color: var(--primary-color);
-  padding: 16px;
+  background: var(--gradient-primary);
+  padding: 20px;
   box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .nav {
   display: flex;
-  gap: 20px;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .link {
   color: var(--white);
   font-weight: 500;
-  padding: 8px 16px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  padding: 12px 24px;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(1, 180, 228, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .activeLink {
   color: var(--white);
   font-weight: 700;
-  padding: 8px 16px;
-  border-radius: 4px;
-  background-color: var(--secondary-color);
+  padding: 12px 24px;
+  border-radius: 50px;
+  background: var(--gradient-accent);
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 30px rgba(33, 208, 122, 0.4);
+  animation: glow 2s infinite alternate;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 30px rgba(33, 208, 122, 0.4);
+  }
+  100% {
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 40px rgba(33, 208, 122, 0.6);
+  }
+}
+
+.activeLink:hover {
+  transform: translateY(-3px);
+  background: var(--gradient-accent);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .nav {
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .link,
+  .activeLink {
+    padding: 10px 20px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    gap: 15px;
+  }
+
+  .link,
+  .activeLink {
+    padding: 8px 16px;
+    font-size: 0.75rem;
+  }
 }

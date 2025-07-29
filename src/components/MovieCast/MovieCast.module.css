@@ -1,68 +1,101 @@
 .container {
-  padding: 20px 0;
+  padding: 30px 0;
 }
 
 .title {
-  margin-bottom: 20px;
-  color: var(--primary-color);
+  margin-bottom: 30px;
+  font-size: 2rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
 }
 
 .castList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 25px;
   list-style: none;
   padding: 0;
 }
 
 .castItem {
-  border-radius: 8px;
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  background-color: var(--white);
+  background: var(--card-background);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.castItem:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
 }
 
 .actorImage {
   width: 100%;
-  height: 225px;
+  height: 240px;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.castItem:hover .actorImage {
+  transform: scale(1.05);
 }
 
 .noImage {
   width: 100%;
-  height: 225px;
+  height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--light-gray);
-  color: var(--text-color);
+  background: var(--gradient-dark);
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 .actorInfo {
-  padding: 10px;
+  padding: 20px;
+  background: var(--card-background);
 }
 
 .actorName {
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  color: var(--text-color);
+  font-size: 1rem;
 }
 
 .character {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary);
   margin: 0;
+  font-style: italic;
 }
 
 .error {
-  color: red;
-  padding: 16px;
-  background-color: rgba(255, 0, 0, 0.1);
-  border-radius: 4px;
+  color: #ff6b6b;
+  padding: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 107, 0.1) 0%,
+    rgba(255, 107, 107, 0.05) 100%
+  );
+  border-radius: 15px;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+  text-align: center;
+  font-weight: 500;
 }
 
 .noCast {
-  padding: 16px;
-  background-color: var(--light-gray);
-  border-radius: 4px;
+  padding: 30px;
+  background: var(--card-background);
+  border-radius: 20px;
   text-align: center;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 1.1rem;
 }
